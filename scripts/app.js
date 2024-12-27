@@ -127,20 +127,21 @@ function createCategory(data) {
 
 // EVENT DELEGATION
 wrapperEl.addEventListener("click", e => {
-    let element = e.target
-    let id = element.closest(".card").dataset.id
+    let element = e.target;
+    let id = element.closest(".card").dataset.id;
 
-    if (element.tagName === "IMG",element.name === "buyB") {
-        open(`/pages/product.html?id=${id}`, "_self")
+    if (element.tagName === "IMG" || element.name === "buyB") {
+        open(`/pages/product.html?id=${id}`, "_self");
     } else if (element.name === "like-btn") {
-        const wish = data.find(item => item.id === +id)
-        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
-        let index = wishlist.findIndex(item => item.id === +id)
+        const wish = data.find(item => item.id === +id);
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        let index = wishlist.findIndex(item => item.id === +id);
         if (index < 0) {
-            localStorage.setItem("wishlist", JSON.stringify([...wishlist, wish]))
+            localStorage.setItem("wishlist", JSON.stringify([...wishlist, wish]));
         }
     }
-})
+});
+
 
 // SEARCH
 searchInputEl.addEventListener("keyup", async (e) => {
